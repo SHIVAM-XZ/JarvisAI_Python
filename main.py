@@ -38,15 +38,15 @@ def takeCommand():
         return "None"
     return query
 wishMe()
-while True:
-  query = takeCommand().lower()
-  if "how are you" in query:
+
+query = takeCommand().lower()
+if "how are you" in query:
     speak("I'm fine sir, how can i help you ?")
 
-  elif "who are you" in query:
+elif "who are you" in query:
     speak("Sir I am Jarvis personal assistant ")
 
-  elif 'wikipedia' in query:
+elif 'wikipedia' in query:
     speak('Searching Wikipedia...please wait')
     query = query.replace("wikipedia", "")
     results =  wikipedia.summary(query, sentences = 2)
@@ -54,25 +54,39 @@ while True:
     print(results)
     speak(results)
 
-  elif'open youtube' in query:
+elif'open youtube' in query:
     speak("opening youtube")
     webbrowser.open("youtube.com")
 
-  elif 'open google' in query:
+elif 'open google' in query:
     speak("opening google")
     webbrowser.open('https://www.google.co.in/')
 
-  elif 'open stackoverflow' in query:
+elif 'open stackoverflow' in query:
     speak("opening stackoverflow")
     webbrowser.open('https://stackoverflow.com/')
 
-#   elif 'play music'in query:
-#     music_dir = "C:\\Users\\Baali\\Music"
-#     songs = os.listdir(music_dir)
-#     print(songs)
-#     os.startfile(os.path.join(music_dir, songs[0]))
-
-  elif 'the time' in query:
+elif 'the time' in query:
     strTime = datetime.datetime.now().strftime("%H:%M:%S")
     speak(f"Sir, the time is {strTime}")
 # speak(query)
+  
+  
+songs = [["Baarish Lete Aana","D:\\Music\\Baarish Lete Aana - Darshan Raval.mp3"],
+           ["Chain","D:\\Music\\Chain Sanu Ik Pal Chain.mp3"],
+           ["Channa Mereya","D:\\Music\\Channa Mereya-(DJPunjab).mp3"],
+           ["CHANNA VE","D:\\Music\\CHANNA VE REVIBE  AKHIL SACHDEVA  Bhoot - Part One_ The Haunted Ship  Vicky K & Bhumi P.mp3"],
+           ["Jaan Ban Gaye","D:\\Music\\Jaan Ban Gaye - Khuda Haafiz.mp3"],
+           ["Ghost","D:\\Music\\Justin Bieber - Ghost.mp3"],
+           ["golden hour","D:\\Music\\JVKE - golden hour (@shirleysetia Remix) (Indian version).mp3"],
+           ["Lambiya Judaiya","D:\\Music\\Lambiya Judaiyan Bilal Saeed 128 Kbps.mp3"],
+           ["Madhanya","D:\\Music\\Madhanya_192(PaglaSongs).mp3"],
+           ["Mere Liye","D:\\Music\\Mere Liye Broken But Beautiful Season 3 128 Kbps.mp3"],
+           ["Satranga","D:\\Music\\Satranga Animal 320 Kbps.mp3"],
+           ["Soch","D:\\Music\\Soch Harrdy Sandhu 128 Kbps.mp3"],
+           ["Tujhe Kitna Chahein Aur","D:\\Music\\Tujhe Kitna Chahein Aur Acoustic Jubin Nautiyal 128 Kbps.mp3"],
+           ["Yaarr Ni Milyaa","D:\\Music\\Yaarr Ni Milyaa - Hardy Sandhu 190Kbps.mp3"]]
+for song in songs:
+     if f"play {song[0]}".lower() in query.lower():
+        speak(f"playing {song[0]}")
+        os.startfile(os.path.join(song[1]))

@@ -1,6 +1,7 @@
 import datetime
 import win32com.client
 import speech_recognition as sr
+import webbrowser
 import wikipedia
 import os
 
@@ -37,5 +38,41 @@ def takeCommand():
         return "None"
     return query
 wishMe()
-query = takeCommand().lower()
-speak(query)
+while True:
+  query = takeCommand().lower()
+  if "how are you" in query:
+    speak("I'm fine sir, how can i help you ?")
+
+  elif "who are you" in query:
+    speak("Sir I am Jarvis personal assistant ")
+
+  elif 'wikipedia' in query:
+    speak('Searching Wikipedia...please wait')
+    query = query.replace("wikipedia", "")
+    results =  wikipedia.summary(query, sentences = 2)
+    speak("wikipedia says")
+    print(results)
+    speak(results)
+
+  elif'open youtube' in query:
+    speak("opening youtube")
+    webbrowser.open("youtube.com")
+
+  elif 'open google' in query:
+    speak("opening google")
+    webbrowser.open('https://www.google.co.in/')
+
+  elif 'open stackoverflow' in query:
+    speak("opening stackoverflow")
+    webbrowser.open('https://stackoverflow.com/')
+
+#   elif 'play music'in query:
+#     music_dir = "C:\\Users\\Baali\\Music"
+#     songs = os.listdir(music_dir)
+#     print(songs)
+#     os.startfile(os.path.join(music_dir, songs[0]))
+
+  elif 'the time' in query:
+    strTime = datetime.datetime.now().strftime("%H:%M:%S")
+    speak(f"Sir, the time is {strTime}")
+# speak(query)

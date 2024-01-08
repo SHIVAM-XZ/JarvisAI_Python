@@ -4,14 +4,16 @@ import speech_recognition as sr
 import webbrowser
 import wikipedia
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import SVC
-import nltk
-from sklearn.model_selection import train_test_split
-import random
+# from sklearn.feature_extraction.text import TfidfVectorizer
+# from sklearn.svm import SVC
+# import nltk
+# from sklearn.model_selection import train_test_split
+# import random
 import warnings
 warnings.simplefilter('ignore')
 from bot_sp import*
+import pyautogui
+import pywhatkit
 
 # nltk.download("punkt")
 
@@ -48,7 +50,7 @@ def takeCommand():
         print("Say that again please...")
         return "None"
     return query
-# wishMe()
+wishMe()
 def AI():
     click_on_chat_button()
     click_on_conversation()
@@ -65,8 +67,20 @@ while True:
     if "how are you" in query:
       speak("I'm fine sir, how can i help you ?")
 
-    elif "open jarvis" in query.lower():
-       speak("opening jarvis")
+    elif 'open' in query:
+       app = query.replace('open','')
+       speak('opening'+ app)
+       pyautogui.press('super')
+       pyautogui.typewrite(app)
+       pyautogui.sleep(0.5)
+       pyautogui.press('enter')
+
+    elif 'close' in query:
+       pyautogui.hotkey('alt','f4')
+       speak("Done sir")
+
+    elif "start jarvis" in query.lower():
+       speak("starting jarvis")
        AI()
 
     elif "who are you" in query:
@@ -74,21 +88,21 @@ while True:
 
     elif 'wikipedia' in query:
       speak('Searching Wikipedia...please wait')
-      query = query.replace("wikipedia", "")
-      results =  wikipedia.summary(query, sentences = 2)
+      wiki = query.replace("wikipedia", "")
+      results =  wikipedia.summary(wiki, sentences = 2)
       speak("wikipedia says")
       print(results)
       speak(results)
 
-    elif'open youtube' in query:
+    elif 'youtube' in query.lower():
       speak("opening youtube")
       webbrowser.open("youtube.com")
 
-    elif 'open google' in query:
+    elif 'google' in query:
       speak("opening google")
       webbrowser.open('https://www.google.co.in/')
 
-    elif 'open stackoverflow' in query:
+    elif 'stack overflow' in query:
       speak("opening stackoverflow")
       webbrowser.open('https://stackoverflow.com/')
 
@@ -119,9 +133,10 @@ while True:
 
     Apps = [["anime","C:\\Users\\kings\\OneDrive\\Desktop\\aniwatch.to.lnk"],
             ["replit","C:\\Users\\kings\\OneDrive\\Desktop\\Replit.lnk"],
-            ["chrome","C:\\Users\\Public\\Desktop\\Google Chrome.lnk"]]
+            # ["chrome","C:\\Users\\Public\\Desktop\\Google Chrome.lnk"]
+            ]
     for app in Apps:
-        if f"open {app[0]}".lower() in query.lower():
+        if f"{app[0]}".lower() in query.lower():
             speak(f"opening {app[0]}")
             os.startfile(os.path.join(app[1]))
     

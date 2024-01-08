@@ -94,9 +94,11 @@ while True:
       print(results)
       speak(results)
 
-    elif 'youtube' in query.lower():
-      speak("opening youtube")
-      webbrowser.open("youtube.com")
+    elif 'play' in query:
+      name = query.replace('play','')
+      speak('playing'+ name + 'in youtube')
+      pywhatkit.playonyt(name)
+      
 
     elif 'google' in query:
       speak("opening google")

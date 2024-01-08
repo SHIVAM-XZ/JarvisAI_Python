@@ -55,12 +55,11 @@ def AI():
     click_on_chat_button()
     click_on_conversation()
     start_conversation()
-    while True:
-      query = takeCommand().lower()
-      ChatGPTBrain(Query=query)
-      isBubbleLoaderVisible()
-      response=retriveData()
-      speak(response)
+    query = takeCommand().lower()
+    ChatGPTBrain(Query=query)
+    isBubbleLoaderVisible()
+    response=retriveData()
+    speak(response)
    
 while True:
     query = takeCommand().lower()
@@ -74,6 +73,12 @@ while True:
        pyautogui.typewrite(app)
        pyautogui.sleep(0.5)
        pyautogui.press('enter')
+
+    elif 'next tab' in query:
+       pyautogui.hotkey('ctrl','tab')
+
+    elif 'close tab' in query:
+       pyautogui.hotkey('ctrl','w')
 
     elif 'close' in query:
        pyautogui.hotkey('alt','f4')
@@ -129,7 +134,7 @@ while True:
                ["Tujhe Kitna Chahein Aur","D:\\Music\\Tujhe Kitna Chahein Aur Acoustic Jubin Nautiyal 128 Kbps.mp3"],
                ["Yaarr Ni Milyaa","D:\\Music\\Yaarr Ni Milyaa - Hardy Sandhu 190Kbps.mp3"]]
     for song in songs:
-         if f"play {song[0]}".lower() in query.lower():
+         if f"mp3 {song[0]}".lower() in query.lower():
             speak(f"playing {song[0]}")
             os.startfile(os.path.join(song[1]))
 

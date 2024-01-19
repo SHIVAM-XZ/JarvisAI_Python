@@ -14,7 +14,8 @@ warnings.simplefilter('ignore')
 from bot_sp import*
 import pyautogui
 import pywhatkit
-
+from email_bot import*
+from gpt4 import*
 # nltk.download("punkt")
 
 speaker = win32com.client.Dispatch("SAPI.Spvoice")
@@ -116,6 +117,18 @@ while True:
     elif 'the time' in query:
       strTime = datetime.datetime.now().strftime("%H:%M:%S")
       speak(f"Sir, the time is {strTime}")
+
+    elif 'write an email' in query or 'send email' in query:
+       speak('ok sir , can you provide me the receiver emailid')
+       to_id = input('enter receiver email id')
+       speak('what should be the subject?')
+       subject = takeCommand()
+       speak('what should be the content, just provide me some prompt sir')
+       email_prompt = takeCommand()
+       message = Gpt('write an email message for'+ email_prompt)
+       Send_email(to_id,subject,message)
+       speak('done sir')
+       
 # speak(query)
   
   

@@ -3,8 +3,8 @@ from email.mime.text import MIMEText # text to MIMEText object is then used as t
 from email.mime.multipart import MIMEMultipart
 
 def Send_email(to_id,subject,message):
-    sender_mail = "twomusketeer07@gmail.com"
-    sender_app_pass = "vucxcbhycxzzpybk"
+    sender_mail = "enter your email"
+    sender_app_pass = "enter app password"
     receiver_mail = to_id
 
     try:
